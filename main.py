@@ -36,7 +36,7 @@ def main():
 
     shots = pygame.sprite.Group()
 
-    Shot.containers = (updatable, drawable)
+    Shot.containers = (updatable, drawable, shots)
 
     while True:
         for event in pygame.event.get():
@@ -48,9 +48,13 @@ def main():
         for object in updatable:
             object.update(dt)
 
-        for object in asteroids:
-            if object.isColliding(player):
+        for asteroid in asteroids:
+            if asteroid.isColliding(player):
                 sys.exit("Game over!")
+            for bullet in shots:
+                if bullet.isColliding(asteroid):
+                    asteroid.kill()
+                    bullet.kill()
 
 
         for object in drawable:
