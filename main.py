@@ -53,7 +53,8 @@ def main():
                 sys.exit("Game over!")
             for bullet in shots:
                 if bullet.isColliding(asteroid):
-                    asteroid.kill()
+                    print("SHOULD SPLIT!")
+                    asteroid.split()
                     bullet.kill()
 
 
